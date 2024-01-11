@@ -1,5 +1,5 @@
 const admin = require('firebase-admin');
-const constants = require('../constants')
+const constants = require('../constants/constants')
 
 let db = null;
 
