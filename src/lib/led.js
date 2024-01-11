@@ -13,7 +13,7 @@ exports.initLED = () => {
     brightness: 255,
     stripType: ws2821x.stripType.WS2812
   };
-  const channel = ws2821x(210, options);
+  channel = ws2821x(210, options);
   return channel
 }
 
