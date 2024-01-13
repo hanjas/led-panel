@@ -1,7 +1,7 @@
 module.exports = {
   firebase: {
-    // firebaseChannel: 'rtPixelData',
-    firebaseChannel: 'rtPixelData_ledpanel-1',
+    rgbChannel: 'rtPixelData_ledpanel-1',
+    animationChannel: '/animations_ledpanel-1/new-animation',
     firebaseDatabaseURL: 'https://elixer-97dcc-default-rtdb.asia-southeast1.firebasedatabase.app',
     certFilePath: '../../connection.json'
   },

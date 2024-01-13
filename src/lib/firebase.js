@@ -16,8 +16,14 @@ exports.initFirebase = () => {
   return db
 }
 
-exports.listen = (callback) => {
-  const dataRef = db.ref(constants.firebase.firebaseChannel);
-  dataRef.on('value', callback);
+exports.listenRGB = (handler) => {
+  const dataRef = db.ref(constants.firebase.rgbChannel);
+  dataRef.on('value', handler);
+  process.stdin.resume();
+}
+
+exports.listenAnimation = (handler) => {
+  const dataRef = db.ref(constants.firebase.animationChannel);
+  dataRef.on('value', handler);
   process.stdin.resume();
 }

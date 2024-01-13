@@ -6,7 +6,8 @@ const start = () => {
   try {
     led.initLED();
     firebase.initFirebase();
-    firebase.listen(msgHandler);
+    firebase.listenRGB(msgHandler.ledRGBHandler);
+    firebase.listenAnimation(msgHandler.animationHanlder);
   } catch (error) {
     console.log(`Error: ${error}`)
   }

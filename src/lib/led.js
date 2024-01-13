@@ -25,16 +25,6 @@ exports.initLED = () => {
   }
 };
 
-exports.showLED = (idx, r, g, b) => {
-  if (!channel) {
-    console.error('LED channel not initialized. Call initLED() first.');
-    return;
-  }
-  const rgbDec = rgbToDec(r, g, b);
-  channel.array[idx] = rgbDec;
-  ws281x.render();
-};
-
 exports.resetLED = () => {
   ws281x.reset();
 };
@@ -47,3 +37,32 @@ exports.turnOffAllLED = () => {
   const black = new Array(LED_COUNT).fill({ r: 0, g: 0, b: 0 });
   ws281x.render(black);
 };
+
+exports.showRGB = async (idx, r, g, b) => {
+  if (!channel) {
+    console.error('LED channel not initialized. Call initLED() first.');
+    return;
+  }
+  const rgbDec = rgbToDec(r, g, b);
+  channel.array[idx] = rgbDec;
+  ws281x.render();
+  
+  console.log({ r, g, b, rgbDec })
+  await delay(20/1000);
+};
+
+function delay(time) {
+  return new Promise(resolve => {
+    setTimeout(resolve, time);
+  });
+}
+
+exports.showAnimation = async function(frames) {
+  for (const frame of frames) {
+    for (const subarray of frame.data) {
+      await delay(frame.time);
+      const [ ledIdx, r, g, b ] = subarray;
+      this.showRGB(ledIdx, r, g, b);
+    }
+  }
+}
