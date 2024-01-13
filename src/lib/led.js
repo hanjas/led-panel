@@ -46,5 +46,4 @@ exports.clearLED = () => {
 exports.turnOffAllLED = () => {
   const black = new Array(LED_COUNT).fill({ r: 0, g: 0, b: 0 });
   ws281x.render(black);
-  ws281x.show();
 };
