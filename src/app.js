@@ -14,6 +14,7 @@ const start = () => {
 
 process.on('SIGINT', () => {
   console.log("exiting...");
+  led.turnOffAllLED();
   led.clearLED();
   process.exit();
 });
