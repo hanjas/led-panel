@@ -2,7 +2,10 @@ const relay = require('../lib/relay');
 
 // payload = [true, false]
 exports.relayHandler = (payload) => {
-  console.log(`Relay payload: ${payload.val()}`);
+  const data = payload.val();
+  console.log(`Relay payload: ${data}`);
+
+  if (!data) return;
 
   const [r1State, r2State] = payload.val();
   relay.switchRelay(1, r1State);

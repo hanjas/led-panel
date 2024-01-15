@@ -43,12 +43,7 @@ exports.showRGB = async (idx, r, g, b) => {
     console.error('LED channel not initialized. Call initLED() first.');
     return;
   }
-  const rgbDec = rgbToDec(r, g, b);
-  channel.array[idx] = rgbDec;
-  ws281x.render();
-
-  console.log({ r, g, b, rgbDec })
-  await delay(20 / 1000);
+  channel.array[idx] = rgbToDec(r, g, b);
 };
 
 exports.renderLED = async (idx, r, g, b) => {
