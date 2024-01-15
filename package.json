@@ -2,7 +2,7 @@
   "name": "led-panel",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "src/app.js",
   "scripts": {
     "start": "node src/app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -12,6 +12,10 @@
   "license": "ISC",
   "dependencies": {
     "firebase-admin": "^12.0.0",
+    "onoff": "^6.0.3",
     "rpi-ws281x-native": "^1.0.4"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.2"
   }
 }

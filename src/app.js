@@ -1,13 +1,26 @@
 const firebase = require('./lib/firebase');
 const led = require('./lib/led');
-const msgHandler = require('./handlers/msgHandler');
+const relay = require('./lib/relay');
+const { ledRGBHandler } = require('./handlers/msgHandler');
+const { animationHanlder } = require('./handlers/animationHandler');
+const { relayHandler } = require('./handlers/relayHandler');
+
+const init = () => {
+  led.initLED();
+  relay.init();
+  firebase.initFirebase();
+}
 
 const start = () => {
+  firebase.listenRGB(ledRGBHandler);
+  firebase.listenAnimation(animationHanlder);
+  firebase.listenRelay(relayHandler);
+}
+
+const main = () => {
   try {
-    led.initLED();
-    firebase.initFirebase();
-    firebase.listenRGB(msgHandler.ledRGBHandler);
-    firebase.listenAnimation(msgHandler.animationHanlder);
+    init();
+    start();
   } catch (error) {
     console.log(`Error: ${error}`)
   }
@@ -20,4 +33,4 @@ process.on('SIGINT', () => {
   process.exit();
 });
 
-start();
+main();

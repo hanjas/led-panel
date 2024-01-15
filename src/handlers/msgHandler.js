@@ -9,17 +9,3 @@ exports.ledRGBHandler = (payload) => {
 
   led.showRGB(ledIdx, r, g, b)
 }
-
-exports.animationHanlder = async (payload) => {
-  const data = payload.val();
-  console.log(`Animation payload: ${JSON.stringify(data)}`)
-
-  if (!('frames' in data)) {
-    console.error('Incorrect payload. missing field frames');
-    return;
-  }
-
-  while (true) {
-    await led.showAnimation(data.frames)
-  }
-}

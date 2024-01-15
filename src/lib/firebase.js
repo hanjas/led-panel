@@ -27,3 +27,9 @@ exports.listenAnimation = (handler) => {
   dataRef.on('value', handler);
   process.stdin.resume();
 }
+
+exports.listenRelay = (handler) => {
+  const dataRef = db.ref(constants.firebase.relayChannel);
+  dataRef.on('value', handler);
+  process.stdin.resume();
+}
