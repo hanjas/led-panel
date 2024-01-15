@@ -1,4 +1,4 @@
-const led = require('./src/lib/led');
+const led = require('../lib/led');
 
 let transitionRuntimeOffset = 0;
 let currentFrameIndex = 0;
