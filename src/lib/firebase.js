@@ -12,7 +12,7 @@ exports.initFirebase = () => {
     databaseURL: constants.firebase.firebaseDatabaseURL,
   });
   db = admin.database();
-  
+
   return db
 }
 

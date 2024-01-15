@@ -11,11 +11,11 @@ const getIndvidualColorCode = (prev, next, transitionTime, currentTime) => {
   return Math.max(0, Math.min(255, prev + (diff * currentTime / transitionTime)));
 }
 
-const getColorCode =(prev, next, transitionTime, currentTime) => {
+const getColorCode = (prev, next, transitionTime, currentTime) => {
   return [
     Math.floor(getIndvidualColorCode(prev[0], next[0], transitionTime, currentTime)),
     Math.floor(getIndvidualColorCode(prev[1], next[1], transitionTime, currentTime)),
-    Math.floor( getIndvidualColorCode(prev[2], next[2], transitionTime, currentTime)),
+    Math.floor(getIndvidualColorCode(prev[2], next[2], transitionTime, currentTime)),
     parseFloat(getIndvidualColorCode(prev[3], next[3], transitionTime, currentTime).toFixed(2)),
   ]
 }
@@ -24,14 +24,14 @@ const getLEDState = (addr) => {
   return currLEDMap[addr] || [0, 0, 0, 0]
 }
 
-const runTransition =(frames, currentFrameIndex)=> {
+const runTransition = (frames, currentFrameIndex) => {
 
   const currentFrame = frames[currentFrameIndex];
   const currentTransitionRuntime = Date.now() - transitionRuntimeOffset;
   if (!(currentFrame?.data)) return;
-  for(const pixel of currentFrame.data) {
+  for (const pixel of currentFrame.data) {
     const prevPixel = getLEDState(pixel[0]);
-    const [r,g,b] = getColorCode(prevPixel, pixel.slice(1), currentFrame.time, currentTransitionRuntime);
+    const [r, g, b] = getColorCode(prevPixel, pixel.slice(1), currentFrame.time, currentTransitionRuntime);
     led.showRGB(pixel[0], r, g, b);
     tempLEDMap[pixel[0]] = pixel.slice(1);
   }
@@ -39,13 +39,13 @@ const runTransition =(frames, currentFrameIndex)=> {
 
   // if -- frame++, prevState -> update
   const isCurrentTransitionCompleted = currentTransitionRuntime >= currentFrame.time;
-  if(isCurrentTransitionCompleted) {
-    currentFrameIndex+=1;
+  if (isCurrentTransitionCompleted) {
+    currentFrameIndex += 1;
     currentFrameIndex = currentFrameIndex % frames.length // looping
     transitionRuntimeOffset = Date.now();
-    currLEDMap = {...tempLEDMap};
+    currLEDMap = { ...tempLEDMap };
   }
-  looper = setImmediate(()=> runTransition(frames, currentFrameIndex));
+  looper = setImmediate(() => runTransition(frames, currentFrameIndex));
 }
 
 const animate = async (frames) => {

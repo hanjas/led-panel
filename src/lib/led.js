@@ -46,9 +46,13 @@ exports.showRGB = async (idx, r, g, b) => {
   const rgbDec = rgbToDec(r, g, b);
   channel.array[idx] = rgbDec;
   ws281x.render();
-  
+
   console.log({ r, g, b, rgbDec })
-  await delay(20/1000);
+  await delay(20 / 1000);
+};
+
+exports.renderLED = async (idx, r, g, b) => {
+  ws281x.render();
 };
 
 function delay(time) {
@@ -57,11 +61,11 @@ function delay(time) {
   });
 }
 
-exports.showAnimation = async function(frames) {
+exports.showAnimation = async function (frames) {
   for (const frame of frames) {
     for (const subarray of frame.data) {
       await delay(frame.time);
-      const [ ledIdx, r, g, b ] = subarray;
+      const [ledIdx, r, g, b] = subarray;
       this.showRGB(ledIdx, r, g, b);
     }
   }
