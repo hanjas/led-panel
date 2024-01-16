@@ -35,7 +35,7 @@ exports.listenAnimation = (handler) => {
 }
 
 exports.listenRelay = (handler) => {
-  this.listen(`/relay_${constants.panelName}`, handler);
+  this.listen(`/relay`, handler);
 }
 
 exports.listenConfig = (handler) => {

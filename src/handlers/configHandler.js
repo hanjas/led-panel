@@ -19,8 +19,6 @@ const handleConfig = (data) => {
   else if (source == 'rtpaint') {
     firebase.listen(`/rtpaint_${constants.panelName}`, paintHandler);
   }
-  else if (source == 'relay') {
-  }
 }
 
 exports.configHandler = (payload) => {
