@@ -1,9 +1,8 @@
 const firebase = require('./lib/firebase');
 const led = require('./lib/led');
 const relay = require('./lib/relay');
-const { ledRGBHandler } = require('./handlers/msgHandler');
-const { animationHanlder } = require('./handlers/animationHandler');
-const { relayHandler } = require('./handlers/relayHandler');
+const { relayHandler } = require('./handlers/relayHandler')
+const { configHandler } = require('./handlers/configHandler')
 
 const init = () => {
   led.initLED();
@@ -12,8 +11,7 @@ const init = () => {
 }
 
 const start = () => {
-  firebase.listenRGB(ledRGBHandler);
-  firebase.listenAnimation(animationHanlder);
+  firebase.listenConfig(configHandler);
   firebase.listenRelay(relayHandler);
 }
 

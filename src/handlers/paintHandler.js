@@ -1,6 +1,6 @@
 const led = require('../lib/led')
 
-exports.ledRGBHandler = (payload) => {
+exports.paintHandler = (payload) => {
   console.log(`RGB payload: ${payload.val()}`);
 
   const data = payload.val();

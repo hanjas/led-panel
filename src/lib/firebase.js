@@ -16,6 +16,12 @@ exports.initFirebase = () => {
   return db
 }
 
+exports.listen = (topic, handler) => {
+  const dataRef = db.ref(topic);
+  dataRef.on('value', handler);
+  process.stdin.resume();
+}
+
 exports.listenRGB = (handler) => {
   const dataRef = db.ref(constants.firebase.rgbChannel);
   dataRef.on('value', handler);
@@ -29,7 +35,11 @@ exports.listenAnimation = (handler) => {
 }
 
 exports.listenRelay = (handler) => {
-  const dataRef = db.ref(constants.firebase.relayChannel);
+  this.listen(`/relay_${constants.panelName}`, handler);
+}
+
+exports.listenConfig = (handler) => {
+  const dataRef = db.ref(constants.firebase.configChannel);
   dataRef.on('value', handler);
   process.stdin.resume();
 }

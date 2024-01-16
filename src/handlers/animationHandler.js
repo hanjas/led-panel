@@ -53,7 +53,7 @@ const animate = async (frames) => {
   runTransition(frames, currentFrameIndex);
 }
 
-exports.animationHanlder = async (payload) => {
+exports.animationHandler = async (payload) => {
   const data = payload.val();
   console.log(`Animation payload: ${JSON.stringify(data)}`)
 
