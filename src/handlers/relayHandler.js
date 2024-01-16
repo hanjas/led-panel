@@ -8,6 +8,6 @@ exports.relayHandler = (payload) => {
   if (!data) return;
 
   const { relay1, relay2 } = payload.val();
-  relay.switchRelay(1, !!relay1);
-  relay.switchRelay(2, !!relay2);
+  relay.switchRelay(1, !!!relay1);
+  relay.switchRelay(2, !!!relay2);
 }
