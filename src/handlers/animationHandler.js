@@ -62,6 +62,7 @@ exports.animationHandler = async (payload) => {
     return;
   }
 
+  led.turnOffAllLED();
   tempLEDMap = {}
   clearImmediate(looper)
   animate(data.frames);
